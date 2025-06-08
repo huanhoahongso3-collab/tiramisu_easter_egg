@@ -3,34 +3,38 @@ name: Gradle Build A13 Easter Egg
 on:
   push:
     branches:
-      - main # or master, depending on your default branch name
+      - main # or master
   pull_request:
     branches:
       - main # or master
 
 jobs:
   build:
-    runs-on: ubuntu-latest # You can also use windows-latest or macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v4 # Action to checkout your repository code
+      uses: actions/checkout@v4
 
     - name: Setup Java
       uses: actions/setup-java@v4
       with:
-        java-version: '17' # Specify your Java version (e.g., '8', '11', '17', '21').
-                          # Make sure this matches what your project requires.
-        distribution: 'temurin' # Recommended distribution for Java (e.g., 'temurin', 'adopt', 'zulu')
-        cache: 'gradle' # Cache Gradle dependencies and wrapper
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'gradle'
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew # Note: No subfolder path here
+      working-directory: my-project-folder/ # <<< --- Add this line, adjust 'my-project-folder/'
 
     - name: Build with Gradle
-      run: ./gradlew build # The command to build your project
+      run: ./gradlew build # Note: No subfolder path here
+      working-directory: my-project-folder/ # <<< --- Add this line, adjust 'my-project-folder/'
 
-    # Upload build artifacts (e.g., JAR/WAR file)
+    # Optional: Upload build artifacts
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: a13-easter-egg-build-artifacts
-        path: build/libs/*.jar # Adjust this path if your build generates a different file type or path
-                                # e.g., build/libs/your-app.jar or build/distributions/
+        path: build/libs/*.jar # This path is relative to 'my-project-folder/'
+      working-directory: my-project-folder/ # <<< --- Add this line, adjust 'my-project-folder/'
