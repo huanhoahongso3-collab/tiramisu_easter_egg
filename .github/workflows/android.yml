@@ -36,7 +36,8 @@ jobs:
       run: gradle build # <--- Changed from ./gradlew build to gradle build
       # If your build.gradle is in a subfolder (e.g., 'android/'), you'd add:
       # working-directory: android/
-
+    - name: List dir
+      run: ls -l
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
