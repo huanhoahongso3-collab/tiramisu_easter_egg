@@ -1,0 +1,17 @@
+plugins {
+    id("easter.egg.library")
+}
+
+android {
+    namespace = "com.android_t.egg"
+    resourcePrefix = "t_"
+}
+
+dependencies {
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.recyclerview)
+
+    implementation(project(":jvm-basic"))
+    implementation(libs.squareup.okio)
+}
