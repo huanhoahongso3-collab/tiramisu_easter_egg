@@ -21,7 +21,7 @@ jobs:
         cache: gradle
 
     - name: Grant execute permission for gradlew
-      run: cd tiramisu_easter_egg && ls -l && chmod +x gradlew 
+      run: ls -l && chmod +x gradlew 
     - name: Build with Gradle
       run: ./gradlew build
       
