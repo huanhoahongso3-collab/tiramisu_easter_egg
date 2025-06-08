@@ -1,1 +1,48 @@
 
+name: Android CI (No gradlew committed)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        # cache: gradle # No need to cache if gradlew isn't used for wrapper download
+
+    - name: Install Gradle
+      # This action installs a specific Gradle version globally
+      uses: gradle/gradle-build-action@v2
+      with:
+        gradle-version: 8.8 # <--- Specify the Gradle version you want to use
+                            #      Make sure this version is compatible with your build.gradle
+        # If your build.gradle is in a subfolder (e.g., 'android/'), you'd add:
+        # working-directory: android/
+    
+    # You no longer need 'chmod +x gradlew' because gradlew won't be in your repo
+
+    - name: Build with Gradle
+      run: gradle build # <--- Changed from ./gradlew build to gradle build
+      # If your build.gradle is in a subfolder (e.g., 'android/'), you'd add:
+      # working-directory: android/
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: a13-easter-egg-build-artifacts
+        # You'll need to specify the correct path to your JAR/APK.
+        # If your build.gradle is at the root and generates to build/libs:
+        path: build/libs/*.jar
+        # If your build.gradle is in a subfolder (e.g., 'android/') and artifacts are there:
+        # path: android/build/libs/*.jar
