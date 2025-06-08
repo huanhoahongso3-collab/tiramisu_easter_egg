@@ -24,9 +24,6 @@ jobs:
         distribution: 'temurin' # Recommended distribution for Java (e.g., 'temurin', 'adopt', 'zulu')
         cache: 'gradle' # Cache Gradle dependencies and wrapper
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew # Ensure the Gradle wrapper is executable
-
     - name: Build with Gradle
       run: ./gradlew build # The command to build your project
 
