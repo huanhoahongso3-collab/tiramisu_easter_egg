@@ -25,11 +25,9 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew # Note: No subfolder path here
-      working-directory: my-project-folder/ # <<< --- Add this line, adjust 'my-project-folder/'
 
     - name: Build with Gradle
       run: ./gradlew build # Note: No subfolder path here
-      working-directory: my-project-folder/ # <<< --- Add this line, adjust 'my-project-folder/'
 
     # Optional: Upload build artifacts
     - name: Upload Build Artifacts
@@ -37,4 +35,3 @@ jobs:
       with:
         name: a13-easter-egg-build-artifacts
         path: build/libs/*.jar # This path is relative to 'my-project-folder/'
-      working-directory: my-project-folder/ # <<< --- Add this line, adjust 'my-project-folder/'
