@@ -30,6 +30,6 @@ dependencyResolutionManagement {
 rootProject.name = "tiramisu_easter_egg"
 include ':jvm-basic'
 // If your main app module is in a folder like 'app', include it:
-// include ':app'
+include ':app'
 // If 'easter.egg.library' is also a module providing the plugin, include it:
 // include ':easter-egg-library'
