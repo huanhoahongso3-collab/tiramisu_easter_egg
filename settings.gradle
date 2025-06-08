@@ -1,27 +1,7 @@
-// settings.gradle (at the root of your project)
-
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-        // If easter.egg.library is from a private Maven repo, add it here:
-        // maven { url 'https://your-custom-plugin-repo.com/releases' }
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "YourEasterEggProject" // Give your project a meaningful name
 
 // You MUST include all your project modules here:
 include ':app' // If your main module is called 'app'
-include ':jvm-basic'
+
 // If 'easter.egg.library' is also a module in your project that provides the plugin,
 // you would include it like this:
 // include ':easter-egg-library'
