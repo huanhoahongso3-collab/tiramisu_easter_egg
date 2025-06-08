@@ -1,7 +1,35 @@
+// settings.gradle
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        // If 'easter.egg.library' is from a private Maven repo, add it here:
+        // maven { url 'https://your-custom-plugin-repo.com/releases' }
+    }
+    resolutionStrategy {
+        eachPlugin {
+            // If 'easter.egg.library' is a custom plugin without a version in the 'plugins' block,
+            // and you need to specify its source, you might add logic here.
+            // However, first focus on getting the Android Gradle Plugin to work.
+            // Example (if it needs to be resolved from a custom source for pluginManagement):
+            // if (requested.id.id == "easter.egg.library") {
+            //     useModule("com.example.plugins:easter-egg-library:1.0.0") // Example module and version
+            // }
+        }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
 
-// You MUST include all your project modules here:
-include ':app' // If your main module is called 'app'
-
-// If 'easter.egg.library' is also a module in your project that provides the plugin,
-// you would include it like this:
+rootProject.name = "tiramisu_easter_egg"
+include ':jvm-basic'
+// If your main app module is in a folder like 'app', include it:
+// include ':app'
+// If 'easter.egg.library' is also a module providing the plugin, include it:
 // include ':easter-egg-library'
